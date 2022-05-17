@@ -26,6 +26,7 @@ class Coronacheck
 	int select;
 	
 	int MAX=100;//총 저장가능한 인원수 변수
+	
 	String saveall[] = new String[MAX];
 	
 	Coronacheck() 
@@ -64,7 +65,7 @@ class Coronacheck
 		Integer.toString(critically);
 		Integer.toString(death);
 		
-		saveall[cnt] = "현재누적 통계 "+"\r\n"+ "확진자수:"+ confirmed +"\r\n"+"중증환자:" + critically +"\r\n"+"사망자:" + death;
+		saveall[cnt] = "현재누적 통계 "+"\r\n"+ "확진자수:"+ confirmed+"명"+"\r\n"+"중증환자:" + critically+"명"+"\r\n"+"사망자:" + death+"명";
 		
 		patientSave(saveall[cnt]);//한줄씩 저장하기
 		
@@ -80,16 +81,21 @@ class Coronacheck
             FileReader filereader = new FileReader(file);
             //입력 버퍼 생성
             BufferedReader bufReader = new BufferedReader(filereader);
+            
             String line = "";
             int i = 0;
+            
             while((line = bufReader.readLine()) != null)
             {
                 System.out.println(line);
     
                 saveall[cnt] = line;//한줄씩읽어올때 결과값에 차례대로 저장하기
+                
                 i++;   
-            }   
+            }
+            
             cnt=i;
+            
             bufReader.close();
             
         }
